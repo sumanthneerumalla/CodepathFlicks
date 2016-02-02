@@ -12,6 +12,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    
     var movies: [NSDictionary]?
     
     override func viewDidLoad() {
@@ -65,13 +66,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
         
+        cell.titleLabel.text = title
+        cell.overviewLabel.text = overview
         
-        cell.textLabel!.text = title
+    
+        
         print("row \(indexPath.row)")
         return cell
     }
